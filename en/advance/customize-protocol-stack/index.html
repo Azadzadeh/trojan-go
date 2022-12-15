@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Custom Protocol Stack - Trojan-Go Docs</title>
+<meta name="description" content="An unidentifiable mechanism that helps you bypass GFW.">
+<meta name="generator" content="Hugo 0.108.0">
+<link href="https://azadzadeh.github.io/trojan-goindex.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://azadzadeh.github.io/trojan-go/en/advance/customize-protocol-stack/">
+<link rel="stylesheet" href="https://azadzadeh.github.io/trojan-go/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://azadzadeh.github.io/trojan-go/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://azadzadeh.github.io/trojan-go/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="Custom Protocol Stack" />
+<meta property="og:description" content="Compatibility Note that Trojan does not support this feature
+Trojan-Go allows advanced users to customize the protocol stack. In custom mode, Trojan-Go will relinquish control of the protocol stack and allow users to manipulate the underlying protocol stack combinations. For example:
+Creating one or more layers of TLS encryption on top of one layer of TLS
+Use TLS to transport Websocket traffic, build another layer of TLS on top of the Websocket layer, and then use Shadowsocks AEAD on top of the second layer of TLS for encrypted transport" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://azadzadeh.github.io/trojan-go/en/advance/customize-protocol-stack/" /><meta property="og:image" content="https://azadzadeh.github.io/trojan-go/images/og-image.png"/><meta property="article:section" content="advance" />
+
+<meta property="og:site_name" content="Trojan-Go Docs" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://azadzadeh.github.io/trojan-go/images/og-image.png"/>
+
+<meta name="twitter:title" content="Custom Protocol Stack"/>
+<meta name="twitter:description" content="Compatibility Note that Trojan does not support this feature
+Trojan-Go allows advanced users to customize the protocol stack. In custom mode, Trojan-Go will relinquish control of the protocol stack and allow users to manipulate the underlying protocol stack combinations. For example:
+Creating one or more layers of TLS encryption on top of one layer of TLS
+Use TLS to transport Websocket traffic, build another layer of TLS on top of the Websocket layer, and then use Shadowsocks AEAD on top of the second layer of TLS for encrypted transport"/>
+<meta itemprop="name" content="Custom Protocol Stack">
+<meta itemprop="description" content="Compatibility Note that Trojan does not support this feature
+Trojan-Go allows advanced users to customize the protocol stack. In custom mode, Trojan-Go will relinquish control of the protocol stack and allow users to manipulate the underlying protocol stack combinations. For example:
+Creating one or more layers of TLS encryption on top of one layer of TLS
+Use TLS to transport Websocket traffic, build another layer of TLS on top of the Websocket layer, and then use Shadowsocks AEAD on top of the second layer of TLS for encrypted transport">
+
+<meta itemprop="wordCount" content="778"><meta itemprop="image" content="https://azadzadeh.github.io/trojan-go/images/og-image.png"/>
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Trojan-Go Docs</h1>
+<a href="https://github.com/p4gefau1t/trojan-go" class="github"><i class="fab fa-github"></i></a>
+<p class="description">An unidentifiable mechanism that helps you bypass GFW.</p>
+
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/trojan-go/en/">English (DeepL)</a></li>
+<li><a href="/trojan-go/zh/">Chinese (original)</a></li>
+<li><a href="https://github.com/p4gefau1t">GitHub</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>Custom Protocol Stack</h1>
+<div class="panel panel-caution"><div class="panel-header">
+<h3>Compatibility</h3>
+</div><div class="panel-body">
+<p>Note that Trojan does not support this feature</p>
+</div>
+</div>
+<p>Trojan-Go allows advanced users to customize the protocol stack. In custom mode, Trojan-Go will relinquish control of the protocol stack and allow users to manipulate the underlying protocol stack combinations. For example:</p>
+<ul>
+<li>
+<p>Creating one or more layers of TLS encryption on top of one layer of TLS</p>
+</li>
+<li>
+<p>Use TLS to transport Websocket traffic, build another layer of TLS on top of the Websocket layer, and then use Shadowsocks AEAD on top of the second layer of TLS for encrypted transport</p>
+</li>
+<li>
+<p>Encrypted transport of Trojan protocol using Shadowsocks AEAD on a TCP connection</p>
+</li>
+<li>
+<p>Unwrap an inbound Trojan TLS traffic and repackage it with TLS as a new outbound Trojan traffic</p>
+</li>
+</ul>
+<p>And so on.</p>
+<div class="panel panel-warning"><div class="panel-header">
+<h3>Caution</h3>
+</div><div class="panel-body">
+<p>Do not try to use this feature if you don&rsquo;t know anything about networking. Incorrect configuration may cause Trojan-Go to not work properly, or cause performance and security issues.</p>
+</div>
+</div>
+<p>Trojan-Go abstracts all protocols into tunnels, each of which may provide a client, which is responsible for sending, a server, which is responsible for receiving, or both. The custom protocol stack is how the custom tunnels are stacked.</p>
+<div class="panel panel-notice"><div class="panel-header">
+<h3>Prerequisite</h3>
+</div><div class="panel-body">
+<p>Before proceeding with the configuration, please read the &ldquo;Basic Introduction&rdquo; section of the Developer&rsquo;s Guide to ensure that you understand how Trojan-Go works.</p>
+</div>
+</div>
+<p>Here are the tunnels supported by Trojan-Go and their properties:</p>
+<table>
+<thead>
+<tr>
+<th>Tunnel</th>
+<th>Requires lower layer to provide streams</th>
+<th>Requires lower layer to provide packages</th>
+<th>Provides streams to upper layer</th>
+<th>Provides packages to upper layer</th>
+<th>Can be used as inbound</th>
+<th>Can be used as outbound</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transport</td>
+<td>n</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+</tr>
+<tr>
+<td>dokodemo</td>
+<td>n</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+</tr>
+<tr>
+<td>tproxy</td>
+<td>n</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+</tr>
+<tr>
+<td>tls</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+</tr>
+<tr>
+<td>trojan</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+</tr>
+<tr>
+<td>mux</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+</tr>
+<tr>
+<td>simplesocks</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+</tr>
+<tr>
+<td>shadowsocks</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+</tr>
+<tr>
+<td>websocket</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+</tr>
+<tr>
+<td>freedom</td>
+<td>n</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+</tr>
+<tr>
+<td>socks</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+</tr>
+<tr>
+<td>http</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>n</td>
+</tr>
+<tr>
+<td>router</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+</tr>
+<tr>
+<td>adapter</td>
+<td>n</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+</tr>
+</tbody>
+</table>
+<p>A custom stack works by defining nodes in a tree/chain and naming them individually (tags) and adding configurations, and then describing the tree/chain using a directed path composed of the tags. For example, for a typical Trojan-Go server, it can be described as follows.</p>
+<p>Inbound, there are two paths, and the tls node will automatically identify trojan and websocket traffic and distribute it</p>
+<ul>
+<li>
+<p>transport-&gt;tls-&gt;trojan</p>
+</li>
+<li>
+<p>transport-&gt;tls-&gt;websocket-&gt;trojan</p>
+</li>
+</ul>
+<p>Outbound, there can only be one path</p>
+<ul>
+<li>router-&gt;freedom</li>
+</ul>
+<p>For inbound, multiple paths are described starting from the root, forming a <strong>multinomial tree</strong> (which can also degenerate to a chain); graphs that do not satisfy the tree property will result in undefined behavior; for outbound, a <strong>chain</strong> must be described.</p>
+<p>Each path must satisfy the condition that.</p>
+<ol>
+<li>
+<p>must start with a tunnel that <strong>does not require lower layers to provide streams or packets</strong> (transport/adapter/tproxy/dokodemo, etc.)</p>
+</li>
+<li>
+<p>must terminate with a tunnel that <strong>provides packets and streams</strong> to the upper layer (trojan/simplesocks/freedom, etc.)</p>
+</li>
+<li>
+<p>on outbound single chains, the tunnels must all be available as outbound. On all paths of the inbound, the tunnels must all be available as inbound.</p>
+</li>
+</ol>
+<p>To enable custom stacks, specify <code>run_type</code> as custom, where all options other than <code>inbound</code> and <code>outbound</code> will be ignored.</p>
+<p>Here is an example of a protocol node that you can insert or reduce on top of this. The configuration file is configured using YAML for simplicity, you can also configure it using JSON, the effect is equivalent except for the difference in format.</p>
+<p>Client client.yaml</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">run-type</span>: <span style="color:#ae81ff">custom</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">inbound</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">node</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">adapter</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">adapter</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">local-addr</span>: <span style="color:#ae81ff">127.0.0.1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">local-port</span>: <span style="color:#ae81ff">1080</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">socks</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">socks</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">local-addr</span>: <span style="color:#ae81ff">127.0.0.1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">local-port</span>: <span style="color:#ae81ff">1080</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">path</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: -
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">adapter</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">socks</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">outbound</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">node</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">transport</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">transport</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">remote-addr</span>: <span style="color:#ae81ff">you_server</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">remote-port</span>: <span style="color:#ae81ff">443</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">tls</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">tls</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ssl</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">sni</span>: <span style="color:#ae81ff">localhost</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">server.key</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">cert</span>: <span style="color:#ae81ff">server.crt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">trojan</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">trojan</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">password</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">password</span>: <span style="color:#ae81ff">12345678</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">path</span>:
+</span></span><span style="display:flex;"><span>    -<span style="color:#ae81ff">transport</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">transport</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">tls</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">trojan</span>
+</span></span></code></pre></div><p>server server.yaml</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">run-type</span>: <span style="color:#ae81ff">custom</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">inbound</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">node</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">websocket</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">websocket</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">websocket</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">example.com</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/ws</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">transport</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">transport</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">local-addr</span>: <span style="color:#ae81ff">0.0.0.0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">local-port</span>: <span style="color:#ae81ff">443</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">remote-addr</span>: <span style="color:#ae81ff">127.0.0.1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">remote-port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">tls</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">tls</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">remote-addr</span>: <span style="color:#ae81ff">127.0.0.1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">remote-port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ssl</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">sni</span>: <span style="color:#ae81ff">localhost</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">server.key</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">cert</span>: <span style="color:#ae81ff">server.crt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">trojan</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">trojan1</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">remote-addr</span>: <span style="color:#ae81ff">127.0.0.1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">remote-port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">password</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">12345678</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">trojan</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">trojan2</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">remote-addr</span>: <span style="color:#ae81ff">127.0.0.1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">remote-port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">password</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">87654321</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">path</span>:
+</span></span><span style="display:flex;"><span>    -
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">transport</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">tls</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">trojan1</span>
+</span></span><span style="display:flex;"><span>    -<span style="color:#ae81ff">transport</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">transport</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">tls</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">websocket</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">trojan2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">outbound</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">node</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">freedom</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">freedom</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">path</span>:
+</span></span><span style="display:flex;"><span>    -<span style="color:#ae81ff">freedom</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">freedom</span>
+</span></span></code></pre></div><div class="edit-meta">
+
+<br><a href="https://github.com/p4gefau1t/trojan-go/docs/edit/master/content/advance/customize-protocol-stack.md" class="edit-page"><i class="fas fa-pen-square"></i> Edit on GitHub</a></div><nav class="pagination"><a class="nav nav-prev" href="https://azadzadeh.github.io/trojan-go/en/advance/plugin/" title="Using Shadowsocks Plugin/Pluggable Transport Layer"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Using Shadowsocks Plugin/Pluggable Transport Layer</a>
+<a class="nav nav-next" href="https://azadzadeh.github.io/trojan-go/en/advance/aead/" title="Secondary encryption with Shadowsocks AEAD">Next - Secondary encryption with Shadowsocks AEAD <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go">Home</a></li>
+
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/basic/">Basic Configuration</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/basic/trojan/">Trojan fundamentals</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/basic/config/">Configuring Trojan-Go correctly</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/basic/full-config/">Full configuration file</a></li>
+</ul>
+  
+</li>
+
+<li class="parent"><a href="https://azadzadeh.github.io/trojan-go/en/advance/">Advanced Configuration</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/mux/">Enabling multiplexing to improve network concurrency performance</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/websocket/">CDN forwarding and resisting man-in-the-middle attacks using Websocket</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/router/">Domestic direct connection and ad blocking</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/forward/">Tunnels and reverse proxies</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/nginx-relay/">A multi-path split relaying scheme based on SNI proxy</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/plugin/">Using Shadowsocks Plugin/Pluggable Transport Layer</a></li>
+<li class="active"><a href="https://azadzadeh.github.io/trojan-go/en/advance/customize-protocol-stack/">Custom Protocol Stack</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/aead/">Secondary encryption with Shadowsocks AEAD</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/api/">Managing users dynamically using the API</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/nat/">Transparent Proxy</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/">Implementation details and development guidelines</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/overview/">Basic introduction</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/build/">Compiling and customizing Trojan-Go</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/trojan/">Trojan Protocol</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/mux/">Multiplexing</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/websocket/">Websocket</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/simplesocks/">SimpleSocks Protocol</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/api/">API Development</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/plugin/">Pluggable transport layer plug-in development</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/url/">URL scheme (draft)</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

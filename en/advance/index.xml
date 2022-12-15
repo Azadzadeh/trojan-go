@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Advanced Configuration on Trojan-Go Docs</title>
+    <link>https://azadzadeh.github.io/trojan-go/en/advance/</link>
+    <description>Recent content in Advanced Configuration on Trojan-Go Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language><atom:link href="https://azadzadeh.github.io/trojan-go/en/advance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Enabling multiplexing to improve network concurrency performance</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/advance/mux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/advance/mux/</guid>
+      <description>Compatibility Note that Trojan does not support this feature
+Trojan-Go supports the use of multiplexing to improve network concurrency performance.
+The Trojan protocol is based on TLS, and before a secure TLS connection can be established, both sides of the connection need to negotiate and exchange keys to ensure the security of the subsequent communication. This process is known as the TLS handshake.
+The GFW currently censors and interferes with the TLS handshake, and due to egress network congestion, it usually takes nearly a second or more for an ordinary line to complete the TLS handshake.</description>
+    </item>
+    
+    <item>
+      <title>CDN forwarding and resisting man-in-the-middle attacks using Websocket</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/advance/websocket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/advance/websocket/</guid>
+      <description>Compatibility Note that Trojan does not support this feature
+Trojan-Go supports using TLS+Websocket to host the Trojan protocol, making it possible to relay traffic using CDNs.
+The Trojan protocol itself is not encrypted and relies on the outer layer of TLS for security, but once the traffic passes through the CDN, TLS is transparent to the CDN. Its service provider can review the plaintext content of the TLS. If you are using an untrusted CDN (any CDN service registered and filed in mainland China should be considered untrusted), please make sure to turn on Shadowsocks AEAD to encrypt Webosocket traffic to avoid being identified and censored.</description>
+    </item>
+    
+    <item>
+      <title>Domestic direct connection and ad blocking</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/advance/router/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/advance/router/</guid>
+      <description>Compatibility Note that Trojan does not support this feature Trojan-Go&amp;rsquo;s built-in routing module can help you implement domestic direct connections, i.e., the client can connect directly to domestic websites without going through a proxy. The routing module can be configured with three policies (bypass, proxy, block) on the client side, and only the block policy can be used on the server side. Here is an example { &amp;#34;run_type&amp;#34;: &amp;#34;client&amp;#34;, &amp;#34;local_addr&amp;#34;:</description>
+    </item>
+    
+    <item>
+      <title>Tunnels and reverse proxies</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/advance/forward/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/advance/forward/</guid>
+      <description>You can use Trojan-Go to set up tunnels. A typical application is to use Trojan-Go to set up a local, unpolluted DNS server, here is an example configuration
+{ &amp;#34;run_type&amp;#34;: &amp;#34;forward&amp;#34;, &amp;#34;local_addr&amp;#34;: &amp;#34;127.0.0.1&amp;#34;, &amp;#34;local_port&amp;#34;: 53, &amp;#34;remote_addr&amp;#34;: &amp;#34;your_awesome_server&amp;#34;, &amp;#34;remote_port&amp;#34;: 443, &amp;#34;target_addr&amp;#34;: &amp;#34;8.8.8.8&amp;#34;, &amp;#34;target_port&amp;#34;: 53, &amp;#34;password&amp;#34;: [ &amp;#34;your_awesome_password&amp;#34; ] } forward is essentially a client, but you need to fill in the target_addr and target_port fields to indicate the target of the reverse proxy.</description>
+    </item>
+    
+    <item>
+      <title>A multi-path split relaying scheme based on SNI proxy</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/advance/nginx-relay/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/advance/nginx-relay/</guid>
+      <description>Preface Trojan is a tool for encrypted data transmission through TLS encapsulation. By using its TLS feature, we can achieve different paths of relaying on the same host port through SNI proxy.
+Required tools and other preparations Relay machine: nginx version 1.11.5 and above Landing machine: trojan server (no version required) Configuration method For the sake of illustration, two relay hosts and two landing hosts are used here. The four hosts are bound to the domain name (a/b/c/d).</description>
+    </item>
+    
+    <item>
+      <title>Using Shadowsocks Plugin/Pluggable Transport Layer</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/advance/plugin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/advance/plugin/</guid>
+      <description>Compatibility Note that Trojan does not support this feature
+Trojan-Go supports a pluggable transport layer. In principle, Trojan-Go can use any software that has TCP tunneling capabilities as a transport layer, such as v2ray, shadowsocks, kcp, etc. Also, Trojan-Go is compatible with Shadowsocks&amp;rsquo; SIP003 plugin standard, such as GoQuiet, v2ray-plugin, etc. You can also use Tor&amp;rsquo;s transport layer plugins, such as obfs4, meek, etc.
+You can use these plugins to replace the TLS transport layer of Trojan-Go.</description>
+    </item>
+    
+    <item>
+      <title>Custom Protocol Stack</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/advance/customize-protocol-stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/advance/customize-protocol-stack/</guid>
+      <description>Compatibility Note that Trojan does not support this feature
+Trojan-Go allows advanced users to customize the protocol stack. In custom mode, Trojan-Go will relinquish control of the protocol stack and allow users to manipulate the underlying protocol stack combinations. For example:
+Creating one or more layers of TLS encryption on top of one layer of TLS
+Use TLS to transport Websocket traffic, build another layer of TLS on top of the Websocket layer, and then use Shadowsocks AEAD on top of the second layer of TLS for encrypted transport</description>
+    </item>
+    
+    <item>
+      <title>Secondary encryption with Shadowsocks AEAD</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/advance/aead/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/advance/aead/</guid>
+      <description>Compatibility Note that Trojan does not support this feature
+The Trojan protocol itself is not encrypted and its security relies on the underlying TLS. in general, TLS security is good and there is no need to encrypt Trojan traffic again. However, there are some scenarios where you may not be able to guarantee the security of a TLS tunnel.
+You use a Websocket, relayed through an untrusted CDN (e.g. a domestic CDN)</description>
+    </item>
+    
+    <item>
+      <title>Managing users dynamically using the API</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/advance/api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/advance/api/</guid>
+      <description>Compatibility Note that Trojan does not support this feature
+Trojan-Go provides a set of APIs using gRPC, which supports the following features.
+user information addition, deletion, and checking
+traffic statistics
+speed statistics
+IP connection statistics
+Trojan-Go itself has integrated API control, i.e. you can use one Trojan-Go instance to control another Trojan-Go server.
+You need to add API settings to the configuration of the server you need to be controlled, e.</description>
+    </item>
+    
+    <item>
+      <title>Transparent Proxy</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/advance/nat/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/advance/nat/</guid>
+      <description>Compatibility Note that Trojan does not fully support this feature (UDP)
+Trojan-Go supports transparent TCP/UDP proxies based on tproxy.
+To enable transparent proxy mode, change run_type to nat in a proper client configuration (see the basic configuration section for how to configure it) and modify the local listening port as required.
+After that you need to add iptables rules. Assuming that your gateway has two NICs, this configuration below forwards inbound packets from one of the NICs (LAN) to Trojan-Go, which sends them through a tunnel to the remote Trojan-Go server via the other NIC (Internet).</description>
+    </item>
+    
+  </channel>
+</rss>

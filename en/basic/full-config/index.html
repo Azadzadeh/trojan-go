@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Full configuration file - Trojan-Go Docs</title>
+<meta name="description" content="An unidentifiable mechanism that helps you bypass GFW.">
+<meta name="generator" content="Hugo 0.108.0">
+<link href="https://azadzadeh.github.io/trojan-goindex.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://azadzadeh.github.io/trojan-go/en/basic/full-config/">
+<link rel="stylesheet" href="https://azadzadeh.github.io/trojan-go/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://azadzadeh.github.io/trojan-go/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://azadzadeh.github.io/trojan-go/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="Full configuration file" />
+<meta property="og:description" content="The following is a complete configuration file with the required options
+run_type
+local_addr
+local_port
+remote_addr
+remote_port
+For server server，key and certare required.
+For the client client, the reverse proxy tunnel forward, and the transparent proxy nat, password is required
+The rest of the unfilled options are filled with the values given below.
+Trojan-Go supports the more human-friendly YAML syntax, and the basic structure of the configuration file is the same as JSON, with equivalent effects." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://azadzadeh.github.io/trojan-go/en/basic/full-config/" /><meta property="og:image" content="https://azadzadeh.github.io/trojan-go/images/og-image.png"/><meta property="article:section" content="basic" />
+
+<meta property="og:site_name" content="Trojan-Go Docs" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://azadzadeh.github.io/trojan-go/images/og-image.png"/>
+
+<meta name="twitter:title" content="Full configuration file"/>
+<meta name="twitter:description" content="The following is a complete configuration file with the required options
+run_type
+local_addr
+local_port
+remote_addr
+remote_port
+For server server，key and certare required.
+For the client client, the reverse proxy tunnel forward, and the transparent proxy nat, password is required
+The rest of the unfilled options are filled with the values given below.
+Trojan-Go supports the more human-friendly YAML syntax, and the basic structure of the configuration file is the same as JSON, with equivalent effects."/>
+<meta itemprop="name" content="Full configuration file">
+<meta itemprop="description" content="The following is a complete configuration file with the required options
+run_type
+local_addr
+local_port
+remote_addr
+remote_port
+For server server，key and certare required.
+For the client client, the reverse proxy tunnel forward, and the transparent proxy nat, password is required
+The rest of the unfilled options are filled with the values given below.
+Trojan-Go supports the more human-friendly YAML syntax, and the basic structure of the configuration file is the same as JSON, with equivalent effects.">
+
+<meta itemprop="wordCount" content="2914"><meta itemprop="image" content="https://azadzadeh.github.io/trojan-go/images/og-image.png"/>
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Trojan-Go Docs</h1>
+<a href="https://github.com/p4gefau1t/trojan-go" class="github"><i class="fab fa-github"></i></a>
+<p class="description">An unidentifiable mechanism that helps you bypass GFW.</p>
+
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/trojan-go/en/">English (DeepL)</a></li>
+<li><a href="/trojan-go/zh/">Chinese (original)</a></li>
+<li><a href="https://github.com/p4gefau1t">GitHub</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>Full configuration file</h1>
+<p>The following is a complete configuration file with the required options</p>
+<ul>
+<li>
+<p><code>run_type</code></p>
+</li>
+<li>
+<p><code>local_addr</code></p>
+</li>
+<li>
+<p><code>local_port</code></p>
+</li>
+<li>
+<p><code>remote_addr</code></p>
+</li>
+<li>
+<p><code>remote_port</code></p>
+</li>
+</ul>
+<p>For server <code>server</code>，<code>key</code> and <code>cert</code>are required.</p>
+<p>For the client <code>client</code>, the reverse proxy tunnel <code>forward</code>, and the transparent proxy <code>nat</code>, <code>password</code> is required</p>
+<p>The rest of the unfilled options are filled with the values given below.</p>
+<p><em>Trojan-Go supports the more human-friendly YAML syntax, and the basic structure of the configuration file is the same as JSON, with equivalent effects. However, to comply with YAML naming conventions, you need to convert underscores (&quot;_&quot;) to horizontal bars (&quot;-&quot;), e.g. <code>remote_addr</code> is <code>remote-addr</code> in YAML files</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;run_type&#34;</span>: <span style="color:#960050;background-color:#1e0010">*required*</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;local_addr&#34;</span>: <span style="color:#960050;background-color:#1e0010">*required*</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;local_port&#34;</span>: <span style="color:#960050;background-color:#1e0010">*required*</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;remote_addr&#34;</span>: <span style="color:#960050;background-color:#1e0010">*required*</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;remote_port&#34;</span>: <span style="color:#960050;background-color:#1e0010">*required*</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;log_level&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;log_file&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;password&#34;</span>: [],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;disable_http_check&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;udp_timeout&#34;</span>: <span style="color:#ae81ff">60</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;ssl&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;verify&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;verify_hostname&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cert&#34;</span>: <span style="color:#960050;background-color:#1e0010">*required*</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;key&#34;</span>: <span style="color:#960050;background-color:#1e0010">*required*</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;key_password&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cipher&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;curves&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;prefer_server_cipher&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;sni&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;alpn&#34;</span>: [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;http/1.1&#34;</span>
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;session_ticket&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;reuse_session&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;plain_http_response&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;fallback_addr&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;fallback_port&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;fingerprint&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tcp&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;no_delay&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;keep_alive&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;prefer_ipv4&#34;</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mux&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;concurrency&#34;</span>: <span style="color:#ae81ff">8</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;idle_timeout&#34;</span>: <span style="color:#ae81ff">60</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;router&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bypass&#34;</span>: [],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;proxy&#34;</span>: [],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;block&#34;</span>: [],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;default_policy&#34;</span>: <span style="color:#e6db74">&#34;proxy&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;domain_strategy&#34;</span>: <span style="color:#e6db74">&#34;as_is&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;geoip&#34;</span>: <span style="color:#e6db74">&#34;$PROGRAM_DIR$/geoip.dat&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;geosite&#34;</span>: <span style="color:#e6db74">&#34;$PROGRAM_DIR$/geosite.dat&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;websocket&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;shadowsocks&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;AES-128-GCM&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;transport_plugin&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;option&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;arg&#34;</span>: [],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;env&#34;</span>: []
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;forward_proxy&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;proxy_addr&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;proxy_port&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mysql&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;server_addr&#34;</span>: <span style="color:#e6db74">&#34;localhost&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;server_port&#34;</span>: <span style="color:#ae81ff">3306</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;database&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;check_rate&#34;</span>: <span style="color:#ae81ff">60</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;api&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;api_addr&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;api_port&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;ssl&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;key&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cert&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;verify_client&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;client_cert&#34;</span>: []
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="description">Description</h2>
+<h3 id="general-options">General options</h3>
+<p>For client/nat/forward, <code>remote_xxxx</code> should be filled in with your trojan server address and port number, <code>local_xxxx</code> corresponds to the local open socks5/http proxy address (auto-adapted)</p>
+<p>For server, <code>local_xxxx</code> corresponds to the trojan server listening address (port 443 is highly recommended), <code>remote_xxxx</code> fills in the address of the HTTP service that proxies to when non-trojan traffic is recognized, usually filling in local port 80.</p>
+<p><code>log_level</code> specifies the log level. The higher the level, the less information will be output. Legitimate values are</p>
+<ul>
+<li>
+<p>0 Outputs logs above Debug (all logs)</p>
+</li>
+<li>
+<p>1 Output Info and above logs</p>
+</li>
+<li>
+<p>2 Output Warning and above logs</p>
+</li>
+<li>
+<p>3 Output Error and above logs</p>
+</li>
+<li>
+<p>4 Output Fatal and above logs</p>
+</li>
+<li>
+<p>5 Do not output logs at all</p>
+</li>
+</ul>
+<p><code>log_file</code> specifies the log output file path. If not specified, standard output is used.</p>
+<p><code>password</code> can be filled with multiple passwords. In addition to configuring passwords using the configuration file, trojan-go also supports configuring passwords using mysql, see below. The client&rsquo;s password can only pass the server&rsquo;s checksum and use the proxy service properly if it matches the password record in the server&rsquo;s configuration file or in the database.</p>
+<p><code>disable_http_check</code> Whether to disable HTTP masquerade server availability check.</p>
+<p><code>udp_timeout</code> UDP session timeout time.</p>
+<h3 id="ssl-options"><code>ssl</code> options</h3>
+<p><code>verify</code> indicates whether the client (client/nat/forward) verifies the legitimacy of the certificate provided by the server, and is enabled by default. For security reasons, this option should not be selected false in real scenarios, otherwise it may suffer from man-in-the-middle attacks. If you use self-signed or self-issued certificates, turning on <code>verify</code> will cause the verification to fail. In this case, you should keep <code>verify</code> on, and then fill in the certificate of the server side in <code>cert</code> to connect normally.</p>
+<p><code>verify_hostname</code> indicates whether the server side verifies the consistency between the SNI provided by the client and the server side settings. If the server-side SNI field is left blank, the authentication will be forced off.</p>
+<p>The server side must fill in <code>cert</code> and <code>key</code>, corresponding to the server&rsquo;s certificate and private key file, please pay attention to whether the certificate is valid/expired. If you use the certificate issued by authoritative CA, the client (client/nat/forward) can not fill in <code>cert</code>. If you use self-signed or self-issued certificate, you should fill in the server certificate file at the <code>cert</code>, otherwise it may cause the verification failure.</p>
+<p><code>sni</code> refers to the server name field in the TLS client request, which is generally the same as the Common Name of the certificate. If you use a certificate issued by an organization such as let&rsquo;sencrypt, fill in your domain name here. For clients, if this is not filled in, it will be populated using <code>remote_addr</code>. You should specify a valid SNI (consistent with the remote certificate CN), otherwise the client may not be able to verify the validity of the remote certificate and thus cannot connect; for the server, if this item is not filled in, the Common Name in the certificate will be used as the basis for SNI verification, supporting wildcards such as *.example.com.</p>
+<p><code>fingerprint</code> is used to specify the type of client-side TLS Client Hello fingerprint forgery to resist GFW&rsquo;s feature identification and blocking for TLS Client Hello fingerprint. trojan-go uses <a href="https://github.com/refraction-networking/utls">utls</a> to perform fingerprint forgery, and Firefox fingerprints are forged by default. Legitimate values are</p>
+<ul>
+<li>
+<p>&ldquo;&rdquo;, no fingerprint forgery is used (default)</p>
+</li>
+<li>
+<p>&ldquo;firefox&rdquo;, forging Firefox fingerprints</p>
+</li>
+<li>
+<p>&ldquo;chrome&rdquo;, to forge Chrome fingerprints</p>
+</li>
+<li>
+<p>&ldquo;ios&rdquo;, to forge iOS fingerprints</p>
+</li>
+</ul>
+<p>Once the value of the fingerprint is set, client-side fields such as <code>cipher</code>, <code>curves</code>, <code>alpn</code>, <code>session_ticket</code> that have the potential to affect the fingerprint will be overridden using the specific settings of that fingerprint.
+<code>alpn</code> specifies the protocol for application layer protocol negotiation for TLS. Transferring in TLS Client/Server Hello and negotiating the protocol used by the application layer is only used for fingerprint forgery and has no practical effect. <strong>If a CDN is used, the wrong alpn field may result in negotiating with the CDN to get the wrong application layer protocol</strong>.</p>
+<p><code>prefer_server_cipher</code> Does the client prefer to select the cryptographic suite provided by the server in the negotiation.</p>
+<p><code>cipher</code> The cryptography suite used by TLS. The <code>cipher13</code> field is merged with this field. You should only go ahead and fill this in to modify the TLS cipher suite used by trojan-go if you know exactly what you are doing. <strong>Normally, you should leave this blank or leave it blank</strong>. trojan-go will automatically choose the most appropriate cryptographic algorithm to improve performance and security based on the current hardware platform and the remote end. If required, cryptography suite names are separated by semicolons (&quot;:&quot;) in order of preference. go&rsquo;s TLS library deprecates some of the insecure cryptography suites in TLS1.2 and fully supports TLS1.3. by default, trojan-go will give preference to the more secure TLS1.3.</p>
+<p><code>curves</code> specifies the elliptic curve that TLS prefers to use in ECDHE. This should only be filled in if you know exactly what you are doing. The curve names are separated by semicolons (&quot;:&quot;) and are listed in order of preference.</p>
+<p><code>plain_http_response</code> refers to the raw data sent in plaintext (raw TCP data) when the server-side TLS handshake fails. This field is filled with the path to that file. It is recommended to use <code>fallback_port</code> instead of this field.</p>
+<p>The <code>fallback_addr</code> and <code>fallback_port</code> refer to the address to which trojan-go redirects the connection if the server-side TLS handshake fails. This is a feature of trojan-go to better conceal the server against active GFW detection, making the server&rsquo;s port 443 behave exactly the same as a normal server when encountering probes from non-TLS protocols. When a server accepts a connection but cannot perform a TLS handshake, if <code>fallback_port</code> is not empty, traffic will be proxied to fallback_addr:fallback_port. if <code>fallback_addr</code> is empty, it will be populated with <code>remote_addr</code> . For example, you can enable an https service locally using nginx, and when your server port 443 is requested by a non-TLS protocol (such as an http request), trojan-go will proxy to the local https server and nginx will return a 400 Bad Request page using the http protocol in plaintext. You can verify this by visiting <code>http://your-domain-name.com:443</code> using your browser.</p>
+<p>The path to the <code>key_log</code> file for the TLS key log. If filled in then key logging is turned on. <strong>Logging keys will break TLS security, and this item should not be used for anything other than debugging.</strong></p>
+<h3 id="mux-multiplexing-options"><code>mux</code> multiplexing options</h3>
+<p>Multiplexing is a feature of trojan-go. If both the server and client are trojan-go, you can turn on mux multiplexing to reduce latency in high concurrency scenarios (you only need to turn on this option on the client side, the server side adapts automatically).</p>
+<p>Note that the point of multiplexing is to reduce handshake latency, not to improve link speed. Instead, it increases CPU and memory consumption on both the client and server side, which may cause speed degradation.</p>
+<p><code>enabled</code> Enables or disables multiplexing.</p>
+<p><code>concurrency</code> refers to the maximum number of connections a single TLS tunnel can carry, the default is 8. The higher the value, the lower the latency of TLS due to handshaking when multiple connections are concurrent, but the network throughput may be reduced, filling in a negative number or 0 means that all connections are carried using only one TLS tunnel.</p>
+<p><code>idle_timeout</code> Idle timeout. Indicates how long the TLS tunnel will be idle before it is closed, in seconds. If the value is negative or 0, then the TLS tunnel is closed as soon as it becomes idle.</p>
+<h3 id="router-routing-options"><code>router</code> routing options</h3>
+<p>Routing is a feature of trojan-go. trojan-go has three types of routing policies.</p>
+<ul>
+<li>
+<p>Proxy Proxy. Proxy the request through a TLS tunnel, with the trojan server and the destination address connected.</p>
+</li>
+<li>
+<p>Bypass bypassing. Connects directly locally to the destination address.</p>
+</li>
+<li>
+<p>Block blocking. Does not proxy the request and closes the connection directly.</p>
+</li>
+</ul>
+<p>Fill in the <code>proxy</code>, <code>bypass</code>, <code>block</code> fields with the corresponding list geoip/geosite or routing rules, trojan-go then executes the corresponding routing policy according to the IP (CIDR) or domain in the list. The client (client) can configure three policies, the server (server) can only configure block policies.</p>
+<p><code>enabled</code> Enables or disables the routing module.</p>
+<p><code>default_policy</code> refers to the default policy to be used when all three lists fail to match. Legitimate values are</p>
+<ul>
+<li>
+<p>&ldquo;proxy&rdquo;</p>
+</li>
+<li>
+<p>&ldquo;bypass&rdquo;</p>
+</li>
+<li>
+<p>&ldquo;block&rdquo;</p>
+</li>
+</ul>
+<p>Same meaning as above.</p>
+<p><code>domain_strategy</code> Domain resolution strategy, default &ldquo;as_is&rdquo;. Legitimate values are.</p>
+<ul>
+<li>
+<p>&ldquo;as_is&rdquo; to match only within the domain rules in each list.</p>
+</li>
+<li>
+<p>&ldquo;ip_if_non_match&rdquo;, which first matches within the rules of the domain name in each list; if it does not match, it resolves to IP and then matches within the rules of the IP address in each list. This policy may lead to DNS leaks or contamination.</p>
+</li>
+<li>
+<p>&ldquo;ip_on_demand&rdquo;, resolves to IP first and matches within the IP address rules in each list; if it does not match, it matches within the domain name rules in each list. This policy may lead to DNS leaks or contamination.</p>
+</li>
+</ul>
+<p>The <code>geoip</code> and <code>geosite</code> fields refer to the geoip and geosite database file paths, which by default use geoip.dat and geosite.dat in the directory where the program is located. you can also specify the working directory by specifying the environment variable TROJAN_GO_LOCATION_ASSET.</p>
+<h3 id="websocket-option"><code>websocket</code> option</h3>
+<p>Websocket transfers are a feature of trojan-go. In the case of <strong>normal direct connections to proxy nodes</strong>, turning on this option will not improve your link speed (or possibly even drop it), nor will it improve your connection security. You should only use websocket in cases where you need to use a CDN for relaying, or use a server such as nginx to distribute based on paths.</p>
+<p><code>enabled</code> indicates whether to enable Websocket to carry traffic, the server side supports both general Trojan protocol and websocket-based Trojan protocol when enabled, the client side will only use websocket to carry all Trojan protocol traffic when enabled.</p>
+<p><code>path</code> refers to the URL path used by websocket, which must start with a slash (&quot;/&quot;), such as &ldquo;/longlongwebsocketpath&rdquo;, and the server and client must be the same.</p>
+<p><code>host</code> is the host name used in HTTP requests during the Websocket handshake. The client uses <code>remote_addr</code> to fill in if left blank. If a CDN is used, this option is usually filled with the domain name. An incorrect <code>host</code> may cause the CDN to fail to forward the request.</p>
+<h3 id="shadowsocks-aead-encryption-option"><code>shadowsocks</code> AEAD encryption option</h3>
+<p>This option is used to replace the deprecated obfuscated encryption and double TLS. if this option is set to enabled, a Shadowsocks AEAD encryption layer will be inserted under the Trojan protocol layer. That is, within the (already encrypted) TLS tunnel, all Trojan protocols will again be encrypted using the AEAD method. Note that this option is independent of whether Websocket is enabled or not. All Trojan traffic will be encrypted again, regardless of whether Websocket is on or not.</p>
+<p>Note that turning this option on will potentially degrade transport performance, and you should only enable this option if you do not trust the transport channel carrying the Trojan protocol. Example.</p>
+<ul>
+<li>
+<p>You are using a Websocket, relayed through an untrusted CDN (e.g. a domestic CDN)</p>
+</li>
+<li>
+<p>Your connection to the server is subject to a man-in-the-middle attack by GFW against TLS</p>
+</li>
+<li>
+<p>Your certificate is invalid, and you cannot verify the validity of the certificate</p>
+</li>
+<li>
+<p>You use a pluggable transport layer that cannot guarantee cryptographic security</p>
+</li>
+</ul>
+<p>etc.</p>
+<p>Thanks to the use of AEAD, trojan-go can correctly determine if the request is valid and is being actively probed, and respond accordingly.</p>
+<p><code>enabled</code> Enables or disables the Shadowsocks AEAD encryption Trojan protocol layer.</p>
+<p><code>method</code> encryption method. Legitimate values are.</p>
+<ul>
+<li>
+<p>&ldquo;CHACHA20-IETF-POLY1305&rdquo;</p>
+</li>
+<li>
+<p>&ldquo;AES-128-GCM&rdquo; (default)</p>
+</li>
+<li>
+<p>&ldquo;AES-256-GCM&rdquo;</p>
+</li>
+</ul>
+<p><code>password</code> is used to generate the password for the master key. If AEAD encryption is enabled, you must ensure that the client and server are identical.</p>
+<h3 id="transport_plugin-transport-layer-plugin-options"><code>transport_plugin</code> Transport layer plugin options</h3>
+<p><code>Enabled</code> Whether to enable transport layer plug-in instead of TLS transport. Once transport layer plugin support is enabled, trojan-go will transmit <strong>unencrypted TLS-encrypted trojan protocol traffic in plaintext to the plugin</strong> to allow user-defined obfuscation and encryption of the traffic.</p>
+<p><code>type</code> plug-in types. The currently supported types are</p>
+<ul>
+<li>
+<p>&ldquo;shadowsocks&rdquo;, which supports the shadowsocks obfuscation plugin conforming to the <a href="https://shadowsocks.org/en/spec/Plugin.html">SIP003</a> standard. trojan-go will replace environment variables and modify its own configuration at startup according to the SIP003 standard (<code>remote_addr/remote_port/local_addr/local_port</code>) so that the plugin communicates directly with the remote end, while trojan-go only listens/connects to the plugin.</p>
+</li>
+<li>
+<p>&ldquo;plaintext&rdquo;, to use plaintext transfer. By selecting this option, trojan-go does not modify any address configuration (<code>remote_addr/remote_port/local_addr/local_port</code>) and does not start the plugin in <code>command</code>, only the lowest TLS transport layer is removed and TCP plaintext transport is used. The purpose of this option is to support nginx and others to take over TLS and perform triage, and advanced users to perform debugging tests. **Please do not use plaintext transport mode directly to penetrate the firewall. **</p>
+</li>
+<li>
+<p>&ldquo;other&rdquo;, other plugins. By selecting this, trojan-go will not modify any address configuration (<code>remote_addr/remote_port/local_addr/local_port</code>), but will start the plugins in <code>command</code> and pass in parameters and environment variables.</p>
+</li>
+</ul>
+<p>The path to the <code>command</code> transport layer plugin executable. trojan-go will execute it along with it at startup.</p>
+<p>The <code>arg</code> transport layer plugin startup parameters. This is a list, e.g. <code>[&quot;-config&quot;, &quot;test.json&quot;]</code>.</p>
+<p><code>env</code> transport layer plugin environment variables. This is a list, e.g. <code>[&quot;VAR1=foo&quot;, &quot;VAR2=bar&quot;]</code>.</p>
+<p><code>option</code> Transport layer plug-in configuration (SIP003). For example <code>&quot;obfs=http;obfs-host=www.baidu.com&quot;</code>.</p>
+<h3 id="tcp-option"><code>tcp</code> option</h3>
+<p><code>no_delay</code> Whether TCP packets are sent directly without waiting for the buffer to fill up.</p>
+<p><code>keep_alive</code> Whether or not to enable TCP heartbeat survival detection.</p>
+<p><code>prefer_ipv4</code> Whether to give preference to IPv4 addresses.</p>
+<h3 id="mysql-database-options"><code>mysql</code> database options</h3>
+<p>trojan-go is compatible with trojan&rsquo;s mysql-based approach to user management, but the more recommended approach is to use the API.</p>
+<p><code>enabled</code> indicates whether to enable the mysql database for user authentication.</p>
+<p><code>check_rate</code> is the interval in seconds for trojan-go to fetch user data from MySQL and update the cache.</p>
+<p>The other options can be named as such and will not be repeated.</p>
+<p>The users table structure is the same as the trojan version definition, here is an example of creating a users table. Note that password here refers to the value (string) of the password after SHA224 hashing, and the units of traffic download, upload, quota are bytes. You can add and remove users or specify their traffic quota by modifying their records in the users table of the database. trojan-go will automatically update the list of currently active users based on all their traffic quotas. If download+upload&gt;quota, the trojan-go server will refuse the connection for that user.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">users</span> (
+</span></span><span style="display:flex;"><span>    id <span style="color:#66d9ef">INT</span> <span style="color:#66d9ef">UNSIGNED</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">AUTO_INCREMENT</span>,
+</span></span><span style="display:flex;"><span>    username <span style="color:#66d9ef">VARCHAR</span>(<span style="color:#ae81ff">64</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    password <span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">56</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    quota <span style="color:#66d9ef">BIGINT</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    download <span style="color:#66d9ef">BIGINT</span> <span style="color:#66d9ef">UNSIGNED</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    upload <span style="color:#66d9ef">BIGINT</span> <span style="color:#66d9ef">UNSIGNED</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (id),
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">INDEX</span> (password)
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h3 id="forward_proxy-preproxy-option"><code>forward_proxy</code> preproxy option</h3>
+<p>The forward proxy option allows to use other proxies to carry trojan-go&rsquo;s traffic</p>
+<p><code>enabled</code> Enables or disables the forward proxy (socks5).</p>
+<p><code>proxy_addr</code> The host address of the preproxy.</p>
+<p><code>proxy_port</code> The port number of the preproxy.</p>
+<p><code>username</code> <code>password</code> The user and password of the proxy, if left blank no authentication will be used.</p>
+<h3 id="api-options"><code>api</code> options</h3>
+<p>trojan-go provides an API based on gRPC to support server-side and client-side management and statistics. You can implement client-side traffic and speed statistics, server-side traffic and speed statistics for each user, dynamic addition and deletion of users and speed limits, etc.</p>
+<p><code>enabled</code> Enables or disables the API function.</p>
+<p><code>api_addr</code> The address of the gRPC listener.</p>
+<p><code>api_port</code> The port gRPC is listening on.</p>
+<p><code>ssl</code> TLS related settings.</p>
+<ul>
+<li>
+<p><code>enabled</code> Whether to use TLS for gRPC traffic.</p>
+</li>
+<li>
+<p><code>key</code>, <code>cert</code> server private key and certificate.</p>
+</li>
+<li>
+<p><code>verify_client</code> Whether to certify client certificates.</p>
+</li>
+<li>
+<p><code>client_cert</code> If client authentication is enabled, fill in the list of certified client certificates here.</p>
+</li>
+</ul>
+<div class="panel panel-warning"><div class="panel-header">
+<h3>Warning</h3>
+</div><div class="panel-body">
+<p>Do not expose API services without TLS bi-directional authentication directly to the Internet, otherwise it may lead to various security problems.</p>
+</div>
+</div>
+<div class="edit-meta">
+
+<br><a href="https://github.com/p4gefau1t/trojan-go/docs/edit/master/content/basic/full-config.md" class="edit-page"><i class="fas fa-pen-square"></i> Edit on GitHub</a></div><nav class="pagination"><a class="nav nav-prev" href="https://azadzadeh.github.io/trojan-go/en/basic/config/" title="Configuring Trojan-Go correctly"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Configuring Trojan-Go correctly</a>
+<a class="nav nav-next" href="https://azadzadeh.github.io/trojan-go/en/advance/" title="Advanced Configuration">Next - Advanced Configuration <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go">Home</a></li>
+
+<li class="parent"><a href="https://azadzadeh.github.io/trojan-go/en/basic/">Basic Configuration</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/basic/trojan/">Trojan fundamentals</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/basic/config/">Configuring Trojan-Go correctly</a></li>
+<li class="active"><a href="https://azadzadeh.github.io/trojan-go/en/basic/full-config/">Full configuration file</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/">Advanced Configuration</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/mux/">Enabling multiplexing to improve network concurrency performance</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/websocket/">CDN forwarding and resisting man-in-the-middle attacks using Websocket</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/router/">Domestic direct connection and ad blocking</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/forward/">Tunnels and reverse proxies</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/nginx-relay/">A multi-path split relaying scheme based on SNI proxy</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/plugin/">Using Shadowsocks Plugin/Pluggable Transport Layer</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/customize-protocol-stack/">Custom Protocol Stack</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/aead/">Secondary encryption with Shadowsocks AEAD</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/api/">Managing users dynamically using the API</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/nat/">Transparent Proxy</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/">Implementation details and development guidelines</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/overview/">Basic introduction</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/build/">Compiling and customizing Trojan-Go</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/trojan/">Trojan Protocol</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/mux/">Multiplexing</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/websocket/">Websocket</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/simplesocks/">SimpleSocks Protocol</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/api/">API Development</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/plugin/">Pluggable transport layer plug-in development</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/url/">URL scheme (draft)</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

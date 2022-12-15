@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>CDN forwarding and resisting man-in-the-middle attacks using Websocket - Trojan-Go Docs</title>
+<meta name="description" content="An unidentifiable mechanism that helps you bypass GFW.">
+<meta name="generator" content="Hugo 0.108.0">
+<link href="https://azadzadeh.github.io/trojan-goindex.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://azadzadeh.github.io/trojan-go/en/advance/websocket/">
+<link rel="stylesheet" href="https://azadzadeh.github.io/trojan-go/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://azadzadeh.github.io/trojan-go/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://azadzadeh.github.io/trojan-go/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="CDN forwarding and resisting man-in-the-middle attacks using Websocket" />
+<meta property="og:description" content="Compatibility Note that Trojan does not support this feature
+Trojan-Go supports using TLS&#43;Websocket to host the Trojan protocol, making it possible to relay traffic using CDNs.
+The Trojan protocol itself is not encrypted and relies on the outer layer of TLS for security, but once the traffic passes through the CDN, TLS is transparent to the CDN. Its service provider can review the plaintext content of the TLS. If you are using an untrusted CDN (any CDN service registered and filed in mainland China should be considered untrusted), please make sure to turn on Shadowsocks AEAD to encrypt Webosocket traffic to avoid being identified and censored." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://azadzadeh.github.io/trojan-go/en/advance/websocket/" /><meta property="og:image" content="https://azadzadeh.github.io/trojan-go/images/og-image.png"/><meta property="article:section" content="advance" />
+
+<meta property="og:site_name" content="Trojan-Go Docs" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://azadzadeh.github.io/trojan-go/images/og-image.png"/>
+
+<meta name="twitter:title" content="CDN forwarding and resisting man-in-the-middle attacks using Websocket"/>
+<meta name="twitter:description" content="Compatibility Note that Trojan does not support this feature
+Trojan-Go supports using TLS&#43;Websocket to host the Trojan protocol, making it possible to relay traffic using CDNs.
+The Trojan protocol itself is not encrypted and relies on the outer layer of TLS for security, but once the traffic passes through the CDN, TLS is transparent to the CDN. Its service provider can review the plaintext content of the TLS. If you are using an untrusted CDN (any CDN service registered and filed in mainland China should be considered untrusted), please make sure to turn on Shadowsocks AEAD to encrypt Webosocket traffic to avoid being identified and censored."/>
+<meta itemprop="name" content="CDN forwarding and resisting man-in-the-middle attacks using Websocket">
+<meta itemprop="description" content="Compatibility Note that Trojan does not support this feature
+Trojan-Go supports using TLS&#43;Websocket to host the Trojan protocol, making it possible to relay traffic using CDNs.
+The Trojan protocol itself is not encrypted and relies on the outer layer of TLS for security, but once the traffic passes through the CDN, TLS is transparent to the CDN. Its service provider can review the plaintext content of the TLS. If you are using an untrusted CDN (any CDN service registered and filed in mainland China should be considered untrusted), please make sure to turn on Shadowsocks AEAD to encrypt Webosocket traffic to avoid being identified and censored.">
+
+<meta itemprop="wordCount" content="323"><meta itemprop="image" content="https://azadzadeh.github.io/trojan-go/images/og-image.png"/>
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Trojan-Go Docs</h1>
+<a href="https://github.com/p4gefau1t/trojan-go" class="github"><i class="fab fa-github"></i></a>
+<p class="description">An unidentifiable mechanism that helps you bypass GFW.</p>
+
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/trojan-go/en/">English (DeepL)</a></li>
+<li><a href="/trojan-go/zh/">Chinese (original)</a></li>
+<li><a href="https://github.com/p4gefau1t">GitHub</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>CDN forwarding and resisting man-in-the-middle attacks using Websocket</h1>
+<div class="panel panel-caution"><div class="panel-header">
+<h3>Compatibility</h3>
+</div><div class="panel-body">
+<p>Note that Trojan does not support this feature</p>
+</div>
+</div>
+<p>Trojan-Go supports using TLS+Websocket to host the Trojan protocol, making it possible to relay traffic using CDNs.</p>
+<p>The Trojan protocol itself is not encrypted and relies on the outer layer of TLS for security, but once the traffic passes through the CDN, TLS is transparent to the CDN. Its service provider can review the plaintext content of the TLS. <strong>If you are using an untrusted CDN (any CDN service registered and filed in mainland China should be considered untrusted), please make sure to turn on Shadowsocks AEAD to encrypt Webosocket traffic to avoid being identified and censored.</strong></p>
+<p>Add the websocket option to both the server and client configuration files and set its <code>enabled</code> field to true, and fill in the <code>path</code> field and the <code>host</code> field to enable websocket support. Here is a complete Websocket option:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#e6db74">&#34;websocket&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/your-websocket-path&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;example.com&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>host</code> is the host name, usually fill in the domain name. Client <code>host</code> is optional, fill in your domain name. If left blank, it will be filled in with <code>remote_addr</code>.</p>
+<p>The <code>path</code> refers to the URL path where the websocket is located and must start with a slash (&quot;/&quot;). There are no special requirements for the path, just satisfy the basic URL format, but make sure that the <code>path</code> of the client and server are the same. The <code>path</code> should be a longer string to avoid direct active detection by GFW.</p>
+<p>The client&rsquo;s <code>host</code> will be included in the Websocket handshake HTTP request sent to the CDN server and must be valid; the server and client <code>path</code> must be the same, otherwise the Websocket handshake will not work.</p>
+<p>Here is an example of a client-side configuration file</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;run_type&#34;</span>: <span style="color:#e6db74">&#34;client&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;local_addr&#34;</span>: <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;local_port&#34;</span>: <span style="color:#ae81ff">1080</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;remote_addr&#34;</span>: <span style="color:#e6db74">&#34;www.your_awesome_domain_name.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;remote_port&#34;</span>: <span style="color:#ae81ff">443</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;password&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;your_password&#34;</span>
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;websocket&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/your-websocket-path&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;example.com&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;shadowsocks&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;12345678&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="edit-meta">
+
+<br><a href="https://github.com/p4gefau1t/trojan-go/docs/edit/master/content/advance/websocket.md" class="edit-page"><i class="fas fa-pen-square"></i> Edit on GitHub</a></div><nav class="pagination"><a class="nav nav-prev" href="https://azadzadeh.github.io/trojan-go/en/advance/mux/" title="Enabling multiplexing to improve network concurrency performance"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Enabling multiplexing to improve network concurrency performance</a>
+<a class="nav nav-next" href="https://azadzadeh.github.io/trojan-go/en/advance/router/" title="Domestic direct connection and ad blocking">Next - Domestic direct connection and ad blocking <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go">Home</a></li>
+
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/basic/">Basic Configuration</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/basic/trojan/">Trojan fundamentals</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/basic/config/">Configuring Trojan-Go correctly</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/basic/full-config/">Full configuration file</a></li>
+</ul>
+  
+</li>
+
+<li class="parent"><a href="https://azadzadeh.github.io/trojan-go/en/advance/">Advanced Configuration</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/mux/">Enabling multiplexing to improve network concurrency performance</a></li>
+<li class="active"><a href="https://azadzadeh.github.io/trojan-go/en/advance/websocket/">CDN forwarding and resisting man-in-the-middle attacks using Websocket</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/router/">Domestic direct connection and ad blocking</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/forward/">Tunnels and reverse proxies</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/nginx-relay/">A multi-path split relaying scheme based on SNI proxy</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/plugin/">Using Shadowsocks Plugin/Pluggable Transport Layer</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/customize-protocol-stack/">Custom Protocol Stack</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/aead/">Secondary encryption with Shadowsocks AEAD</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/api/">Managing users dynamically using the API</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/advance/nat/">Transparent Proxy</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/">Implementation details and development guidelines</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/overview/">Basic introduction</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/build/">Compiling and customizing Trojan-Go</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/trojan/">Trojan Protocol</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/mux/">Multiplexing</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/websocket/">Websocket</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/simplesocks/">SimpleSocks Protocol</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/api/">API Development</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/plugin/">Pluggable transport layer plug-in development</a></li>
+<li class=""><a href="https://azadzadeh.github.io/trojan-go/en/developer/url/">URL scheme (draft)</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

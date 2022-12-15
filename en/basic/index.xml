@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Basic Configuration on Trojan-Go Docs</title>
+    <link>https://azadzadeh.github.io/trojan-go/en/basic/</link>
+    <description>Recent content in Basic Configuration on Trojan-Go Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language><atom:link href="https://azadzadeh.github.io/trojan-go/en/basic/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Trojan fundamentals</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/basic/trojan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/basic/trojan/</guid>
+      <description>This page will briefly describe the basics of how the Trojan protocol works. If you are not interested in how GFW and Trojan work, you can skip this section. However, for better security of your communication and node concealment, I recommend you read it.
+Why Shadowsocks (with streaming passwords) is vulnerable to blocking Firewalls in the early days simply intercepted and censored outbound traffic, i.e. passive detection. Shadowsocks&amp;rsquo; encryption protocol was designed so that the transmitted packets themselves had almost no signature and appeared similar to a completely random stream of bits, which did work to bypass GFWs in the early days.</description>
+    </item>
+    
+    <item>
+      <title>Configuring Trojan-Go correctly</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/basic/config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/basic/config/</guid>
+      <description>The following section will describe how to properly configure Trojan-Go to completely hide your proxy node features.
+Before you start, you need
+A server that is not blocked by GFW
+A domain name, you can use a free domain name service such as .tk
+Trojan-Go, which can be downloaded from the release page
+Certificates and keys, which can be issued for free from agencies such as letsencrypt
+Server-side configuration Our goal is to make your server behave the same as a normal HTTPS site.</description>
+    </item>
+    
+    <item>
+      <title>Full configuration file</title>
+      <link>https://azadzadeh.github.io/trojan-go/en/basic/full-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://azadzadeh.github.io/trojan-go/en/basic/full-config/</guid>
+      <description>The following is a complete configuration file with the required options
+run_type
+local_addr
+local_port
+remote_addr
+remote_port
+For server server，key and certare required.
+For the client client, the reverse proxy tunnel forward, and the transparent proxy nat, password is required
+The rest of the unfilled options are filled with the values given below.
+Trojan-Go supports the more human-friendly YAML syntax, and the basic structure of the configuration file is the same as JSON, with equivalent effects.</description>
+    </item>
+    
+  </channel>
+</rss>
